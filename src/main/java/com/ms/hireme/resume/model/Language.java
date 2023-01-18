@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_language")
@@ -37,7 +36,6 @@ public class Language {
     @Enumerated(EnumType.STRING)
     private Proficiency speakingProficiency;
 
-    @JsonIgnore
     @ManyToOne
     private Candidate candidate;
 

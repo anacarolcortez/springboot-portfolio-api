@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_experience")
@@ -47,7 +46,6 @@ public class Experience {
     @Column(nullable = false)
     private String country;
 
-    @JsonIgnore
     @ManyToOne
     private Candidate candidate;
 

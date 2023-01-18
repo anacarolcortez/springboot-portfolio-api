@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_education")
@@ -44,7 +43,6 @@ public class Education {
     @Column(nullable = false, length = 80)
     private String institution;
 
-    @JsonIgnore
     @ManyToOne
     private Candidate candidate;
 

@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_course")
@@ -38,7 +37,6 @@ public class Course {
     private String country;
     private String certificateUrl;
 
-    @JsonIgnore
     @ManyToOne
     private Candidate candidate;
 
