@@ -89,6 +89,10 @@ public class Education {
         return institution;
     }
 
+    public Candidate getCandidate() {
+        return candidate;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -113,7 +117,5 @@ public class Education {
             return false;
         return true;
     }
-
-    
     
 }

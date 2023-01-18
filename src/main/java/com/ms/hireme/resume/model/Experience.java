@@ -92,6 +92,14 @@ public class Experience {
         return country;
     }
 
+    public Level getLevel() {
+        return level;
+    }
+
+    public Candidate getCandidate() {
+        return candidate;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -115,7 +123,6 @@ public class Experience {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
-
+    }   
 
 }
