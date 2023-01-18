@@ -14,10 +14,12 @@ import com.ms.hireme.resume.dto.CandidateDTO;
 import com.ms.hireme.resume.dto.CourseDTO;
 import com.ms.hireme.resume.dto.EducationDTO;
 import com.ms.hireme.resume.dto.ExperienceDTO;
+import com.ms.hireme.resume.dto.LanguageDTO;
 import com.ms.hireme.resume.service.CandidateService;
 import com.ms.hireme.resume.service.CourseService;
 import com.ms.hireme.resume.service.EducationService;
 import com.ms.hireme.resume.service.ExperienceService;
+import com.ms.hireme.resume.service.LanguageService;
 
 @RestController
 @RequestMapping("/resume")
@@ -34,6 +36,8 @@ public class ResumeController {
 
     @Autowired
     private CourseService courseService;
+
+    @Autowired LanguageService languageService;
 
 
     // In order to make it a 'metalinguistic' portfolio, there's only one candidate allowed in the list from DB: me ;)
@@ -61,7 +65,11 @@ public class ResumeController {
         return ResponseEntity.ok().body(courses);
     }
 
-
+    @GetMapping("/languages/{id}")
+    public ResponseEntity<List<LanguageDTO>> getLanguagesByCandidateId(@PathVariable UUID id){
+        List<LanguageDTO> languages = languageService.getLanguageByCandaidateId(id);
+        return ResponseEntity.ok().body(languages);
+    }
 
     
 }
