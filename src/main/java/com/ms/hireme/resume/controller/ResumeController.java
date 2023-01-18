@@ -26,7 +26,7 @@ import com.ms.hireme.resume.service.LanguageService;
 public class ResumeController {
 
     @Autowired
-    private CandidateService service;
+    private CandidateService candidateService;
 
     @Autowired
     private ExperienceService experienceService;
@@ -37,13 +37,14 @@ public class ResumeController {
     @Autowired
     private CourseService courseService;
 
-    @Autowired LanguageService languageService;
+    @Autowired 
+    private LanguageService languageService;
 
 
     // In order to make it a 'metalinguistic' portfolio, there's only one candidate allowed in the list from DB: me ;)
     @GetMapping("/candidates")
     public ResponseEntity<List<CandidateDTO>> getTheOneCandidate(){
-        List<CandidateDTO> candidates = service.getCandidates();
+        List<CandidateDTO> candidates = candidateService.getCandidates();
         return ResponseEntity.ok().body(candidates);
     }
 
