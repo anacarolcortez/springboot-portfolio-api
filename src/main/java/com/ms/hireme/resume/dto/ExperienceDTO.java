@@ -9,7 +9,9 @@ import com.ms.hireme.resume.model.Level;
 
 public class ExperienceDTO {
 
+    @JsonIgnore
     private UUID id;
+    
     private String company;
     private String jobTitle;
     private Level level;

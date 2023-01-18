@@ -10,7 +10,9 @@ import com.ms.hireme.resume.model.Course;
 public class CourseDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     private UUID id;
+    
     private String title;
     private Date startDate;
     private Date endDate;
