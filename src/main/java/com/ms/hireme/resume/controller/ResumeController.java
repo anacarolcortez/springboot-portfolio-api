@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ms.hireme.resume.dto.CandidateDTO;
 import com.ms.hireme.resume.dto.CourseDTO;
+import com.ms.hireme.resume.dto.EducationDTO;
 import com.ms.hireme.resume.dto.ExperienceDTO;
 import com.ms.hireme.resume.service.CandidateService;
 import com.ms.hireme.resume.service.CourseService;
+import com.ms.hireme.resume.service.EducationService;
 import com.ms.hireme.resume.service.ExperienceService;
 
 @RestController
@@ -25,16 +27,32 @@ public class ResumeController {
     private CandidateService service;
 
     @Autowired
-    private CourseService courseService;
+    private ExperienceService experienceService;
 
     @Autowired
-    private ExperienceService experienceService;
+    private EducationService educationService;
+
+    @Autowired
+    private CourseService courseService;
+
 
     // In order to make it a 'metalinguistic' portfolio, there's only one candidate allowed in the list from DB: me ;)
     @GetMapping("/candidates")
-    public ResponseEntity<List<CandidateDTO>> getCandidates(){
+    public ResponseEntity<List<CandidateDTO>> getTheOneCandidate(){
         List<CandidateDTO> candidates = service.getCandidates();
         return ResponseEntity.ok().body(candidates);
+    }
+
+    @GetMapping("/experiences/{id}")
+    public ResponseEntity<List<ExperienceDTO>> getExperiencesByCandidateId(@PathVariable UUID id){
+        List<ExperienceDTO> experiences = experienceService.getExperienceByCandidateId(id);
+        return ResponseEntity.ok().body(experiences);
+    }
+
+    @GetMapping("/degrees/{id}")
+    public ResponseEntity<List<EducationDTO>> getDegreesByCandidateId(@PathVariable UUID id){
+        List<EducationDTO> degrees = educationService.getEducationByCandidateId(id);
+        return ResponseEntity.ok().body(degrees);
     }
 
     @GetMapping("/courses/{id}")
@@ -43,10 +61,7 @@ public class ResumeController {
         return ResponseEntity.ok().body(courses);
     }
 
-    @GetMapping("/experiences/{id}")
-    public ResponseEntity<List<ExperienceDTO>> getExperiencesByCandidateId(@PathVariable UUID id){
-        List<ExperienceDTO> experiences = experienceService.getExperienceByCandidateId(id);
-        return ResponseEntity.ok().body(experiences);
-    }
+
+
     
 }
