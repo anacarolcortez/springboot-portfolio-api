@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
-import com.ms.hireme.resume.model.Candidate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ms.hireme.resume.model.Course;
 
 public class CourseDTO implements Serializable {
@@ -17,7 +17,9 @@ public class CourseDTO implements Serializable {
     private String description;
     private String country;
     private String certificateUrl;
-    private Candidate candidate;
+
+    @JsonIgnore
+    private CandidateDTO candidate;
 
     public CourseDTO() {
     }
@@ -75,7 +77,7 @@ public class CourseDTO implements Serializable {
         return certificateUrl;
     }
 
-    public Candidate getCandidate() {
+    public CandidateDTO getCandidate() {
         return candidate;
     }
 
