@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="tb_registration")
 public class Registration {
@@ -20,6 +21,9 @@ public class Registration {
     @Column(nullable = false, length = 80)
     private String name;
 
+    @Column(nullable = false, length = 20)
+    private String password;
+
     @Column(nullable = false, length = 80)
     private String email;
 
@@ -29,11 +33,13 @@ public class Registration {
     @Column(nullable = false, length = 80)
     private String company;
 
+
     public Registration(){}
 
-    public Registration(UUID id, String name, String email, String jobTitle, String company) {
+    public Registration(UUID id, String name, String password, String email, String jobTitle, String company) {
         this.id = id;
         this.name = name;
+        this.password = password;
         this.email = email;
         this.jobTitle = jobTitle;
         this.company = company;
@@ -79,6 +85,14 @@ public class Registration {
         this.company = company;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }   
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -104,5 +118,4 @@ public class Registration {
         return true;
     }
 
-    
 }
