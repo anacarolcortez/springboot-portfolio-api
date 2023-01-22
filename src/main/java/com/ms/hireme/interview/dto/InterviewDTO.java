@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.ms.hireme.interview.model.Interview;
 import com.ms.hireme.registration.dto.RegInterviewDTO;
+import com.ms.hireme.registration.model.Registration;
 
 public class InterviewDTO {
 
@@ -25,6 +26,11 @@ public class InterviewDTO {
         this.id = interview.getId();
         this.description = interview.getDescription();
         this.appointment = interview.getAppointment();
+    }
+
+    public InterviewDTO(Interview interview, Registration registration) {
+        this(interview);
+        this.interviewer = new RegInterviewDTO(registration);
     }
 
     public UUID getId() {

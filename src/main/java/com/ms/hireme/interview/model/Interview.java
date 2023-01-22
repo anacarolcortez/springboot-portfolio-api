@@ -16,9 +16,9 @@ import javax.persistence.Table;
 import com.ms.hireme.registration.model.Registration;
 
 @Entity
-@Table(name="tb_interview")
+@Table(name = "tb_interview")
 public class Interview {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -38,7 +38,8 @@ public class Interview {
     @ManyToOne
     private Registration interviewer;
 
-    public Interview(){}
+    public Interview() {
+    }
 
     public Interview(UUID id, String description, Instant appointment, Instant createdAt, Instant updatedAt) {
         this.id = id;
@@ -49,12 +50,12 @@ public class Interview {
     }
 
     @PrePersist
-    public void prePersist(){
+    public void prePersist() {
         createdAt = Instant.now();
     }
 
     @PreUpdate
-    public void preUpdate(){
+    public void preUpdate() {
         updatedAt = Instant.now();
     }
 
@@ -90,6 +91,14 @@ public class Interview {
         return updatedAt;
     }
 
+    public Registration getInterviewer() {
+        return interviewer;
+    }
+
+    public void setInterviewer(Registration interviewer) {
+        this.interviewer = interviewer;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -115,5 +124,4 @@ public class Interview {
         return true;
     }
 
-    
 }
