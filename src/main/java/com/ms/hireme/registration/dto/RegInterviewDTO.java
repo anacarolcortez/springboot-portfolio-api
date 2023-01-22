@@ -1,17 +1,29 @@
 package com.ms.hireme.registration.dto;
 
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ms.hireme.interview.dto.InterviewDTO;
 import com.ms.hireme.registration.model.Registration;
 
 public class RegInterviewDTO {
+
+    // @JsonIgnore
+    private UUID id;
 
     private String name;
     private String email;
     private String jobTitle;
     private String company;
+    
+    @JsonIgnore
+    private InterviewDTO interviewer;
 
     public RegInterviewDTO(){}
 
-    public RegInterviewDTO(String name, String email, String jobTitle, String company) {
+
+    public RegInterviewDTO(UUID id, String name, String email, String jobTitle, String company) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.jobTitle = jobTitle;
@@ -19,6 +31,7 @@ public class RegInterviewDTO {
     }
 
     public RegInterviewDTO(Registration registration) {
+        this.id = registration.getId();
         this.name = registration.getName();
         this.email = registration.getEmail();
         this.jobTitle = registration.getJobTitle();
@@ -57,6 +70,21 @@ public class RegInterviewDTO {
         this.company = company;
     }
 
-    
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public InterviewDTO getInterviewer() {
+        return interviewer;
+    }
+
+    public void setInterviewer(InterviewDTO interviewer) {
+        this.interviewer = interviewer;
+    }
+
     
 }

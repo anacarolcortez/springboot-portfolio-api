@@ -60,7 +60,7 @@ public class RegistrationService {
         }
     }
 
-    public void convertDtoToEntity(RegistrationDTO dto, Registration entity){
+    private void convertDtoToEntity(RegistrationDTO dto, Registration entity){
         if(dto.getEmail() != null && !dto.getEmail().isEmpty()){
             entity.setEmail(dto.getEmail());
         }
