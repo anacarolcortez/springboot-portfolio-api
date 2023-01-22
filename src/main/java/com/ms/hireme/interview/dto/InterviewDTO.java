@@ -33,6 +33,7 @@ public class InterviewDTO {
         this.interviewer = new RegInterviewDTO(registration);
     }
 
+
     public UUID getId() {
         return id;
     }
