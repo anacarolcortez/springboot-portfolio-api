@@ -28,7 +28,7 @@ public class SwaggerConfig {
         ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
 
         apiInfoBuilder.title("The Portfolio API");
-        apiInfoBuilder.description("API Rest using Java, Springboot, Validation, Security, Postgres, Docker, RabbitMq. \nThe API is a metalinguistic resume and allows anyone, like tech leads, to create an interview appointment to get to know the professional better. Get the candidate's id (mine) to use it as parameter to test CRUD actions in Registration as Interview endpoints. \nAfter creating an interview request, an e-mail will be sent");
+        apiInfoBuilder.description("API Rest using Java, Springboot, Validation, Security, Postgres, Docker, RabbitMq. \nThe API is a metalinguistic resume and allows anyone, like tech leads, to create an interview appointment to get to know the professional better. Get the candidate's id (mine) to use it as parameter to test CRUD actions in Registration and Interview endpoints. After creating an interview request, an e-mail will be sent, through asynchronous communication");
         apiInfoBuilder.version("1.0");
         apiInfoBuilder.contact(this.contact());
 
