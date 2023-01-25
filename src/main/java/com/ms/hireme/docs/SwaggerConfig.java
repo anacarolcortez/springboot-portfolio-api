@@ -27,8 +27,8 @@ public class SwaggerConfig {
 
         ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
 
-        apiInfoBuilder.title("Hire Me: The Portfolio API");
-        apiInfoBuilder.description("API Rest using Java, Springboot, Validation, Security, DataBase (Postgres), Docker, RabbitMq. \nThe goal is to show what I can develop, as Associate Software Developer (entry level) so I can be hired by your company to join the team =) \nThe API is a show case of my own resume and allows any recruter or tech lead to register and set an interview appointment to get to know me better\nThe endpoint Resume is only a GET. A complete CRUD can be tested using other 2 endpoints: Registration and Interview. \nGet the candidate's id (mine) to use it as parameter to the Resume and Interview endpoints. \nAfter creating an interview request, we'll both receive an e-mail about it.");
+        apiInfoBuilder.title("The Portfolio API");
+        apiInfoBuilder.description("API Rest using Java, Springboot, Validation, Security, Postgres, Docker, RabbitMq. \nThe API is a metalinguistic resume and allows anyone, like tech leads, to create an interview appointment to get to know the professional better\nThe endpoint Resume is only a GET one. A complete CRUD can be tested using other 2 endpoints: Registration and Interview. \nGet the candidate's id (mine) to use it as parameter to the Resume and Interview endpoints. \nAfter creating an interview request, an e-mail will be sent");
         apiInfoBuilder.version("1.0");
         apiInfoBuilder.contact(this.contact());
 
