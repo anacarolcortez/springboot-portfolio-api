@@ -3,6 +3,8 @@ package com.ms.hireme.apis.registration.controller;
 import java.net.URI;
 import java.util.UUID;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,7 +35,7 @@ public class RegistrationController {
     }
 
     @PostMapping()
-    public ResponseEntity<RegistrationDTO> createRegistration(@RequestBody RegistrationDTO registrationDTO){
+    public ResponseEntity<RegistrationDTO> createRegistration(@Valid @RequestBody RegistrationDTO registrationDTO){
         RegistrationDTO registration = service.createRegistration(registrationDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")

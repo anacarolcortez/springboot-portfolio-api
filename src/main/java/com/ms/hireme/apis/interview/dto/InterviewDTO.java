@@ -3,6 +3,9 @@ package com.ms.hireme.apis.interview.dto;
 import java.time.Instant;
 import java.util.UUID;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import com.ms.hireme.apis.interview.model.Interview;
 import com.ms.hireme.apis.registration.dto.RegInterviewDTO;
 import com.ms.hireme.apis.registration.model.Registration;
@@ -11,8 +14,14 @@ import com.ms.hireme.apis.registration.model.Registration;
 public class InterviewDTO {
 
     private UUID id;
+
+    @NotBlank(message = "Description cannot be blank")
     private String description;
+
+    @NotNull(message = "Appointment cannot be null")
     private Instant appointment;
+
+    @NotNull(message = "Interviewer id cannot be null")
     private RegInterviewDTO interviewer;
 
     public InterviewDTO() {}
