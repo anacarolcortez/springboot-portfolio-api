@@ -1,5 +1,10 @@
 package com.ms.hireme.apis.sendmail.dto;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+
 import com.ms.hireme.apis.interview.dto.InterviewDTO;
 
 public class EmailDTO {
@@ -25,7 +30,7 @@ public class EmailDTO {
         this.emailFrom = "apihireme@gmail.com";
         this.emailTo = interviewDTO.getInterviewer().getEmail();
         this.subject = "Pedido de entrevista";
-        this.text = "Este é um e-mail de teste e deve ser desconsiderado. Data e horário da entrevista hipotética: " + interviewDTO.getAppointment() + ". Mensagem original: " + interviewDTO.getDescription();
+        this.text = "Este é um e-mail de teste e deve ser desconsiderado. Data e horário da entrevista hipotética: " + getDateFormat(interviewDTO.getAppointment()) + ". Mensagem original: " + interviewDTO.getDescription();
     }
 
     public String getOwnerRef() {
@@ -68,6 +73,11 @@ public class EmailDTO {
         this.text = text;
     }
 
+    public String getDateFormat(Instant instant){
+        LocalDateTime datetime = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);
+        String formatted = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm:ss").format(datetime);
+        return formatted;
+    }
     
     
 }
