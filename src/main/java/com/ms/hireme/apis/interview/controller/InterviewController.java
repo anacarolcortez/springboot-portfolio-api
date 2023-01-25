@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.ms.hireme.apis.interview.dto.InterviewCreateDTO;
 import com.ms.hireme.apis.interview.dto.InterviewDTO;
+import com.ms.hireme.apis.interview.dto.InterviewUpdateDTO;
 import com.ms.hireme.apis.interview.service.InterviewService;
 import com.ms.hireme.apis.sendmail.dto.EmailDTO;
 
@@ -50,8 +52,8 @@ public class InterviewController {
     }
     
     @PostMapping
-    public ResponseEntity<InterviewDTO> createInterview(@Valid @RequestBody InterviewDTO interviewDTO){
-        InterviewDTO interview = service.createInterview(interviewDTO);
+    public ResponseEntity<InterviewCreateDTO> createInterview(@Valid @RequestBody InterviewCreateDTO interviewDTO){
+        InterviewCreateDTO interview = service.createInterview(interviewDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(interview.getId())
@@ -62,8 +64,8 @@ public class InterviewController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<InterviewDTO> updateInterviewById(@PathVariable UUID id, @RequestBody InterviewDTO interviewDTO){
-        InterviewDTO interview = service.updateInterview(id, interviewDTO);
+    public ResponseEntity<InterviewUpdateDTO> updateInterviewById(@PathVariable UUID id, @RequestBody InterviewUpdateDTO interviewDTO){
+        InterviewUpdateDTO interview = service.updateInterview(id, interviewDTO);
         return ResponseEntity.ok().body(interview);
     }
 

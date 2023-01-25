@@ -2,29 +2,15 @@ package com.ms.hireme.apis.registration.dto;
 
 import java.util.UUID;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
 import com.ms.hireme.apis.registration.model.Registration;
 
 public class RegistrationDTO {
 
     private UUID id;
-
-    @NotBlank(message = "Name cannot be blank")
     private String name;
-
-    @NotBlank(message = "Email cannot be blank")
-    @Email(message = "E-mail must be valid")
     private String email;
-
-    @NotBlank(message = "Password cannot be blank")
     private String password;
-
-    @NotBlank(message = "Job title cannot be blank")
     private String jobTitle;
-
-    @NotBlank(message = "Company name cannot be blank")
     private String company;
 
     public RegistrationDTO(){}

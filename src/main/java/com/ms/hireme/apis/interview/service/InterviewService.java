@@ -13,7 +13,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ms.hireme.apis.interview.dto.InterviewCreateDTO;
 import com.ms.hireme.apis.interview.dto.InterviewDTO;
+import com.ms.hireme.apis.interview.dto.InterviewUpdateDTO;
 import com.ms.hireme.apis.interview.model.Interview;
 import com.ms.hireme.apis.interview.repository.InterviewRepository;
 import com.ms.hireme.apis.registration.model.Registration;
@@ -46,20 +48,22 @@ public class InterviewService {
     }
 
     @Transactional
-    public InterviewDTO createInterview(InterviewDTO interviewDTO){
+    public InterviewCreateDTO createInterview(InterviewCreateDTO interviewDTO){
         Interview interview = new Interview();
-        convertDtoToEntity(interviewDTO, interview);
+        Registration interviewer = regRepository.getReferenceById(interviewDTO.getInterviewer().getId());
+        interviewDTO.convertDtoToEntity(interviewDTO, interview, interviewer);
         interview = repository.save(interview);
-        return new InterviewDTO(interview, interview.getInterviewer());
+        return new InterviewCreateDTO(interview, interview.getInterviewer());
     }
 
     @Transactional
-    public InterviewDTO updateInterview(UUID id, InterviewDTO interviewDTO){
+    public InterviewUpdateDTO updateInterview(UUID id, InterviewUpdateDTO interviewDTO){
         try {
             Interview interview = repository.getReferenceById(id);
-            convertDtoToEntity(interviewDTO, interview);
+            Registration interviewer = regRepository.getReferenceById(interviewDTO.getInterviewer().getId());
+            interviewDTO.convertDtoToEntity(interviewDTO, interview, interviewer);
             interview = repository.save(interview);
-            return new InterviewDTO(interview, interview.getInterviewer());
+            return new InterviewUpdateDTO(interview, interview.getInterviewer());
         } catch (EntityNotFoundException err){
             throw new ResourceNotFoundException("Id not found" + id);
         }
@@ -72,21 +76,6 @@ public class InterviewService {
             throw new ResourceNotFoundException("Id not found" + id);
         } catch (DataIntegrityViolationException err) {
             throw new DataBaseException("Integrity violation");
-        }
-    }
-
-    private void convertDtoToEntity(InterviewDTO interviewDTO, Interview interview) {
-        if (interviewDTO.getAppointment() != null){
-            interview.setAppointment(interviewDTO.getAppointment());
-        }
-
-        if (interviewDTO.getDescription() != null && !interviewDTO.getDescription().isEmpty()){
-            interview.setDescription(interviewDTO.getDescription());
-        }
-
-        if (interviewDTO.getInterviewer() != null){
-            Registration interviewer = regRepository.getReferenceById(interviewDTO.getInterviewer().getId());
-            interview.setInterviewer(interviewer);
         }
     }
 }

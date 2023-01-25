@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
-import com.ms.hireme.apis.interview.dto.InterviewDTO;
+import com.ms.hireme.apis.interview.dto.InterviewCreateDTO;
 
 public class EmailDTO {
 
@@ -25,7 +25,7 @@ public class EmailDTO {
         this.text = text;
     }
 
-    public EmailDTO(InterviewDTO interviewDTO){
+    public EmailDTO(InterviewCreateDTO interviewDTO){
         this.ownerRef = interviewDTO.getInterviewer().getName();
         this.emailFrom = "apihireme@gmail.com";
         this.emailTo = interviewDTO.getInterviewer().getEmail();
