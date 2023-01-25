@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.ms.hireme.apis.registration.dto.RegistrationCreateDTO;
 import com.ms.hireme.apis.registration.dto.RegistrationDTO;
+import com.ms.hireme.apis.registration.dto.RegistrationUpdateDTO;
 import com.ms.hireme.apis.registration.service.RegistrationService;
 
 @RestController
@@ -35,8 +37,8 @@ public class RegistrationController {
     }
 
     @PostMapping()
-    public ResponseEntity<RegistrationDTO> createRegistration(@Valid @RequestBody RegistrationDTO registrationDTO){
-        RegistrationDTO registration = service.createRegistration(registrationDTO);
+    public ResponseEntity<RegistrationCreateDTO> createRegistration(@Valid @RequestBody RegistrationCreateDTO registrationDTO){
+        RegistrationCreateDTO registration = service.createRegistration(registrationDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(registration.getId())
@@ -45,8 +47,8 @@ public class RegistrationController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<RegistrationDTO> updateRegistrationById(@PathVariable UUID id, @RequestBody RegistrationDTO registrationDTO){
-        RegistrationDTO registration = service.updtaeRegistration(id, registrationDTO);
+    public ResponseEntity<RegistrationUpdateDTO> updateRegistrationById(@PathVariable UUID id, @Valid @RequestBody RegistrationUpdateDTO registrationDTO){
+        RegistrationUpdateDTO registration = service.updateRegistration(id, registrationDTO);
         return ResponseEntity.ok().body(registration);
     }
 

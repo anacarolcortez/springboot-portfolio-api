@@ -11,7 +11,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ms.hireme.apis.registration.dto.RegistrationCreateDTO;
 import com.ms.hireme.apis.registration.dto.RegistrationDTO;
+import com.ms.hireme.apis.registration.dto.RegistrationUpdateDTO;
 import com.ms.hireme.apis.registration.model.Registration;
 import com.ms.hireme.apis.registration.repository.RegistrationRepository;
 import com.ms.hireme.utils.exceptions.DataBaseException;
@@ -31,20 +33,20 @@ public class RegistrationService {
     }
 
     @Transactional
-    public RegistrationDTO createRegistration(RegistrationDTO regDto){
+    public RegistrationCreateDTO createRegistration(RegistrationCreateDTO regDto){
         Registration registration = new Registration();
-        convertDtoToEntity(regDto, registration);
+        regDto.convertDtoToEntity(regDto, registration);
         registration = repository.save(registration);
-        return new RegistrationDTO(registration);
+        return new RegistrationCreateDTO(registration);
     }
 
     @Transactional
-    public RegistrationDTO updtaeRegistration(UUID id, RegistrationDTO regDto){
+    public RegistrationUpdateDTO updateRegistration(UUID id, RegistrationUpdateDTO regDto){
         try{
             Registration registration = repository.getReferenceById(id);
-            convertDtoToEntity(regDto, registration);
+            regDto.convertDtoToEntity(regDto, registration);
             registration = repository.save(registration);
-            return new RegistrationDTO(registration);
+            return new RegistrationUpdateDTO(registration);
         } catch (EntityNotFoundException err){
             throw new ResourceNotFoundException("Id not found" + id);
         }
@@ -59,27 +61,5 @@ public class RegistrationService {
             throw new DataBaseException("Integrity violation");
         }
     }
-
-    private void convertDtoToEntity(RegistrationDTO dto, Registration entity){
-        if(dto.getEmail() != null && !dto.getEmail().isEmpty()){
-            entity.setEmail(dto.getEmail());
-        }
-        
-        if(dto.getCompany() != null && !dto.getCompany().isEmpty()) {
-            entity.setCompany(dto.getCompany());
-        }
-        
-        if(dto.getJobTitle() != null && !dto.getJobTitle().isEmpty()) {
-            entity.setJobTitle(dto.getJobTitle());
-        }
-
-        if(dto.getName() != null && !dto.getName().isEmpty()) {
-            entity.setName(dto.getName());
-        }
-
-        if(dto.getPassword() != null && !dto.getPassword().isEmpty()) {
-            entity.setPassword(dto.getPassword());
-        }
-
-    }
+    
 }
