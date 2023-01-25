@@ -1,12 +1,14 @@
 package com.ms.hireme.apis.sendmail.dto;
 
+import com.ms.hireme.apis.interview.dto.InterviewDTO;
+
 public class EmailDTO {
 
     private String ownerRef;
-    private String emailFrom;
-    private String emailTo;
     private String subject;
     private String text;
+    private String emailTo;
+    private String emailFrom;
 
     public EmailDTO(){}
 
@@ -16,6 +18,14 @@ public class EmailDTO {
         this.emailTo = emailTo;
         this.subject = subject;
         this.text = text;
+    }
+
+    public EmailDTO(InterviewDTO interviewDTO){
+        this.ownerRef = interviewDTO.getInterviewer().getName();
+        this.emailFrom = "apihireme@gmail.com";
+        this.emailTo = interviewDTO.getInterviewer().getEmail();
+        this.subject = "Pedido de entrevista";
+        this.text = "Este é um e-mail de teste e deve ser desconsiderado. Data e horário da entrevista hipotética: " + interviewDTO.getAppointment() + ". Mensagem original: " + interviewDTO.getDescription();
     }
 
     public String getOwnerRef() {
