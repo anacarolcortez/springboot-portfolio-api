@@ -66,11 +66,16 @@ public class InterviewController {
     @PatchMapping("/{id}")
     public ResponseEntity<InterviewUpdateDTO> updateInterviewById(@PathVariable UUID id, @RequestBody InterviewUpdateDTO interviewDTO){
         InterviewUpdateDTO interview = service.updateInterview(id, interviewDTO);
+        EmailDTO email = new EmailDTO(interview);
+        rbt.convertAndSend(routingkey, email);
         return ResponseEntity.ok().body(interview);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteInterviewById(@PathVariable UUID id){
+        InterviewDTO interview = service.getInterviewById(id);
+        EmailDTO email = new EmailDTO(interview);
+        rbt.convertAndSend(routingkey, email);
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

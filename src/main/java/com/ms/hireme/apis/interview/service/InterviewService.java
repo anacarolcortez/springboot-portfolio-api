@@ -60,8 +60,7 @@ public class InterviewService {
     public InterviewUpdateDTO updateInterview(UUID id, InterviewUpdateDTO interviewDTO){
         try {
             Interview interview = repository.getReferenceById(id);
-            Registration interviewer = regRepository.getReferenceById(interviewDTO.getInterviewer().getId());
-            interviewDTO.convertDtoToEntity(interviewDTO, interview, interviewer);
+            interviewDTO.convertDtoToEntity(interviewDTO, interview);
             interview = repository.save(interview);
             return new InterviewUpdateDTO(interview, interview.getInterviewer());
         } catch (EntityNotFoundException err){

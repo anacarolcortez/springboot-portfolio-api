@@ -6,6 +6,8 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 import com.ms.hireme.apis.interview.dto.InterviewCreateDTO;
+import com.ms.hireme.apis.interview.dto.InterviewDTO;
+import com.ms.hireme.apis.interview.dto.InterviewUpdateDTO;
 
 public class EmailDTO {
 
@@ -25,11 +27,27 @@ public class EmailDTO {
         this.text = text;
     }
 
+    public EmailDTO(InterviewDTO interviewDTO){
+        this.ownerRef = interviewDTO.getInterviewer().getName();
+        this.emailFrom = "apihireme@gmail.com";
+        this.emailTo = interviewDTO.getInterviewer().getEmail();
+        this.subject = "Cancelamento de entrevista";
+        this.text = "A entrevista de" + getDateFormat(interviewDTO.getAppointment()) +" foi cancelada";
+    }
+
     public EmailDTO(InterviewCreateDTO interviewDTO){
         this.ownerRef = interviewDTO.getInterviewer().getName();
         this.emailFrom = "apihireme@gmail.com";
         this.emailTo = interviewDTO.getInterviewer().getEmail();
         this.subject = "Pedido de entrevista";
+        this.text = "Cópia da mensagem original: " + interviewDTO.getDescription() + " / Data e horário da entrevista: " + getDateFormat(interviewDTO.getAppointment()) + " [Obs: Desconsiderar este e-mail; é apenas hipotético]";
+    }
+
+    public EmailDTO(InterviewUpdateDTO interviewDTO){
+        this.ownerRef = interviewDTO.getInterviewer().getName();
+        this.emailFrom = "apihireme@gmail.com";
+        this.emailTo = interviewDTO.getInterviewer().getEmail();
+        this.subject = "Atualização da entrevista";
         this.text = "Cópia da mensagem original: " + interviewDTO.getDescription() + " / Data e horário da entrevista: " + getDateFormat(interviewDTO.getAppointment()) + " [Obs: Desconsiderar este e-mail; é apenas hipotético]";
     }
 

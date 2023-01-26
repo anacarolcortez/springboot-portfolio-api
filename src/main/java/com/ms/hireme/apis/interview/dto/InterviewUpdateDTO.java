@@ -23,7 +23,7 @@ public class InterviewUpdateDTO {
     @NotNull(message = "Appointment cannot be null")
     private Instant appointment;
 
-    @NotNull(message = "Interviewer id cannot be null")
+    @JsonIgnore
     private RegInterviewDTO interviewer;
 
     public InterviewUpdateDTO() {}
@@ -45,7 +45,7 @@ public class InterviewUpdateDTO {
         this.interviewer = new RegInterviewDTO(registration);
     }
 
-    public void convertDtoToEntity(InterviewUpdateDTO interviewDTO, Interview interview, Registration interviewer) {
+    public void convertDtoToEntity(InterviewUpdateDTO interviewDTO, Interview interview) {
         if (interviewDTO.getAppointment() != null){
             interview.setAppointment(interviewDTO.getAppointment());
         }
@@ -53,12 +53,7 @@ public class InterviewUpdateDTO {
         if (interviewDTO.getDescription() != null && !interviewDTO.getDescription().isBlank()){
             interview.setDescription(interviewDTO.getDescription());
         }
-
-        if (interviewer != null){
-            interview.setInterviewer(interviewer);
-        }
     }
-
 
     public UUID getId() {
         return id;
