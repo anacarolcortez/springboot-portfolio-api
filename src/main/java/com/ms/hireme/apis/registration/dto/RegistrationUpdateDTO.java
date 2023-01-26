@@ -1,16 +1,12 @@
 package com.ms.hireme.apis.registration.dto;
 
-import java.util.UUID;
 
 import javax.validation.constraints.Email;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ms.hireme.apis.registration.model.Registration;
 
 public class RegistrationUpdateDTO {
 
-    @JsonIgnore
-    private UUID id;
     private String name;
     @Email(message = "E-mail must be valid")
     private String email;
@@ -20,8 +16,7 @@ public class RegistrationUpdateDTO {
 
     public RegistrationUpdateDTO(){}
 
-    public RegistrationUpdateDTO(UUID id, String name, String email, String password, String jobTitle, String company) {
-        this.id = id;
+    public RegistrationUpdateDTO(String name, String email, String password, String jobTitle, String company) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -30,7 +25,6 @@ public class RegistrationUpdateDTO {
     }
 
     public RegistrationUpdateDTO(Registration registration) {
-        this.id = registration.getId();
         this.name = registration.getName();
         this.email = registration.getEmail();
         this.password = registration.getPassword();
@@ -59,14 +53,6 @@ public class RegistrationUpdateDTO {
             entity.setPassword(dto.getPassword());
         }
 
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public String getName() {

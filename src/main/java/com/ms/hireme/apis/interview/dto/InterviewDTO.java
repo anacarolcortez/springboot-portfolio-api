@@ -3,6 +3,7 @@ package com.ms.hireme.apis.interview.dto;
 import java.time.Instant;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ms.hireme.apis.interview.model.Interview;
 import com.ms.hireme.apis.registration.dto.RegInterviewDTO;
 import com.ms.hireme.apis.registration.model.Registration;
@@ -13,6 +14,8 @@ public class InterviewDTO {
     private UUID id;
     private String description;
     private Instant appointment;
+
+    @JsonIgnore
     private RegInterviewDTO interviewer;
 
     public InterviewDTO() {}

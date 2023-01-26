@@ -8,7 +8,6 @@ import com.ms.hireme.apis.registration.model.Registration;
 
 public class RegInterviewDTO {
 
-    // @JsonIgnore
     private UUID id;
 
     private String name;

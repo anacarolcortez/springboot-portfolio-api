@@ -30,7 +30,7 @@ public class EmailDTO {
         this.emailFrom = "apihireme@gmail.com";
         this.emailTo = interviewDTO.getInterviewer().getEmail();
         this.subject = "Pedido de entrevista";
-        this.text = "Este é um e-mail de teste e deve ser desconsiderado. Data e horário da entrevista hipotética: " + getDateFormat(interviewDTO.getAppointment()) + ". Mensagem original: " + interviewDTO.getDescription();
+        this.text = "Cópia da mensagem original: " + interviewDTO.getDescription() + " / Data e horário da entrevista: " + getDateFormat(interviewDTO.getAppointment()) + " [Obs: Desconsiderar este e-mail; é apenas hipotético]";
     }
 
     public String getOwnerRef() {
