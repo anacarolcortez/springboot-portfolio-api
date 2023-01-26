@@ -48,9 +48,9 @@ public class InterviewService {
     }
 
     @Transactional
-    public InterviewCreateDTO createInterview(InterviewCreateDTO interviewDTO){
+    public InterviewCreateDTO createInterview(UUID id, InterviewCreateDTO interviewDTO){
         Interview interview = new Interview();
-        Registration interviewer = regRepository.getReferenceById(interviewDTO.getInterviewer().getId());
+        Registration interviewer = regRepository.getReferenceById(id);
         interviewDTO.convertDtoToEntity(interviewDTO, interview, interviewer);
         interview = repository.save(interview);
         return new InterviewCreateDTO(interview, interview.getInterviewer());

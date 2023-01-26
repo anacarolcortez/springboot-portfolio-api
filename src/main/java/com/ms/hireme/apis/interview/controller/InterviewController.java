@@ -27,7 +27,7 @@ import com.ms.hireme.apis.interview.service.InterviewService;
 import com.ms.hireme.apis.sendmail.dto.EmailDTO;
 
 @RestController
-@RequestMapping("/interview")
+@RequestMapping("/interviews")
 public class InterviewController {
 
     @Autowired
@@ -51,9 +51,9 @@ public class InterviewController {
         return ResponseEntity.ok().body(interviews);
     }
     
-    @PostMapping
-    public ResponseEntity<InterviewCreateDTO> createInterview(@Valid @RequestBody InterviewCreateDTO interviewDTO){
-        InterviewCreateDTO interview = service.createInterview(interviewDTO);
+    @PostMapping("/interviewer/{id}")
+    public ResponseEntity<InterviewCreateDTO> createInterview(@PathVariable UUID id, @Valid @RequestBody InterviewCreateDTO interviewDTO){
+        InterviewCreateDTO interview = service.createInterview(id, interviewDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(interview.getId())
