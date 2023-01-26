@@ -23,7 +23,7 @@ import com.ms.hireme.apis.registration.dto.RegistrationUpdateDTO;
 import com.ms.hireme.apis.registration.service.RegistrationService;
 
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("/registrations")
 public class RegistrationController {
     
     @Autowired

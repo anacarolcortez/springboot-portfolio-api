@@ -22,7 +22,7 @@ import com.ms.hireme.apis.resume.service.ExperienceService;
 import com.ms.hireme.apis.resume.service.LanguageService;
 
 @RestController
-@RequestMapping("/resume")
+@RequestMapping("/resumes")
 public class ResumeController {
 
     @Autowired
